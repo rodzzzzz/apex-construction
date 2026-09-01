@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "tokenrouter": {
+      "options": {
+        "apiKey": "sk-5CzbEOKO0r4N0NClTX5OsmsDsqDZBtmHzr3Y2Pf0J5JovKH4"
+      }
+    }
+  }
+}
