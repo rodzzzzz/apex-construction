@@ -11,12 +11,18 @@ function pad(value: number) {
   return String(value).padStart(2, "0");
 }
 
+/**
+ * Process timeline. Horizontal grid on wide screens; on vertical mode a
+ * connecting line draws downward (scaleY) with the steps, each marked by
+ * a square plan-annotation marker.
+ */
 export function ProcessSteps({
   steps,
   kicker = "How we work",
   title,
   light = false,
   vertical = false,
+  numbered = false,
   className,
 }: {
   steps: readonly ProcessStep[];
@@ -24,6 +30,7 @@ export function ProcessSteps({
   title?: string;
   light?: boolean;
   vertical?: boolean;
+  numbered?: boolean;
   className?: string;
 }) {
   if (steps.length === 0) return null;
@@ -45,25 +52,42 @@ export function ProcessSteps({
       ) : null}
       <ol
         className={cn(
+          "relative",
           vertical
-            ? "mt-12 grid gap-0"
+            ? "mt-14 grid"
             : "mt-14 grid gap-x-12 gap-y-14 md:grid-cols-2 lg:grid-cols-4",
         )}
       >
+        {/* vertical timeline spine that draws downward */}
+        {vertical ? (
+          <Reveal
+            variant="draw-y"
+            className="absolute top-2 bottom-2 left-[7px] w-px bg-amber/45 sm:left-[9px]"
+            aria-hidden
+          />
+        ) : null}
         {steps.map((step, index) => (
           <li
             key={step.title}
             className={cn(
               vertical
-                ? "grid grid-cols-[auto_1fr] gap-6 border-t py-8"
+                ? "relative grid grid-cols-[auto_1fr] gap-x-6 border-t pb-10 pt-8 first:border-t-0 first:pt-0 sm:gap-x-8"
                 : "border-t border-amber/30 pt-7",
-              light ? "border-chalk/15" : undefined,
+              light && !vertical && "border-chalk/15",
+              light && vertical && "border-chalk/10",
             )}
           >
-            <Reveal delay={Math.min(index, 4) * 80}>
+            {/* square plan marker sitting on the vertical spine */}
+            {vertical ? (
+              <span
+                aria-hidden
+                className="relative z-10 mt-1.5 size-3.5 shrink-0 bg-amber sm:size-4"
+              />
+            ) : null}
+            <Reveal delay={Math.min(index, 4) * 90} variant="rise">
               <div className="flex flex-col gap-3">
                 <p className="font-mono text-[11px] tracking-[0.22em] text-amber uppercase">
-                  {pad(index + 1)}
+                  {numbered ? `Step ${pad(index + 1)}` : pad(index + 1)}
                 </p>
                 <h3
                   className={cn(

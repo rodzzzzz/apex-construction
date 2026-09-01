@@ -1,23 +1,52 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
 
+type RevealVariant = "rise" | "rise-slow" | "draw-x" | "draw-y";
+
+const VARIANT_CLASS: Record<RevealVariant, string> = {
+  rise: "reveal-rise",
+  "rise-slow": "reveal-rise-slow",
+  "draw-x": "reveal-draw-x",
+  "draw-y": "reveal-draw-y",
+};
+
+/**
+ * Scroll-reveal wrapper with mechanical drafting-table variants.
+ * All variants respect prefers-reduced-motion (content shows immediately).
+ */
 export function Reveal({
-  children,
+  children = null,
   className,
   delay = 0,
+  variant = "rise",
+  as = "div",
 }: {
-  children: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   delay?: number;
+  variant?: RevealVariant;
+  as?: "div" | "span" | "li" | "section";
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    // Respect reduced motion: show immediately
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const id = window.setTimeout(() => setIsVisible(true), 0);
+      return () => window.clearTimeout(id);
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -33,13 +62,20 @@ export function Reveal({
     return () => observer.disconnect();
   }, []);
 
+  const Tag = as as "div";
+  const typedRef = ref as React.RefObject<HTMLDivElement>;
+
   return (
-    <div
-      ref={ref}
+    <Tag
+      ref={typedRef}
       className={cn(
         isVisible
-          ? "animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both"
-          : "opacity-0 motion-reduce:opacity-100",
+          ? VARIANT_CLASS[variant]
+          : variant === "draw-x"
+            ? "scale-x-0 motion-reduce:scale-x-100"
+            : variant === "draw-y"
+              ? "scale-y-0 motion-reduce:scale-y-100"
+              : "opacity-0 motion-reduce:opacity-100",
         className,
       )}
       style={
@@ -49,6 +85,6 @@ export function Reveal({
       }
     >
       {children}
-    </div>
+    </Tag>
   );
 }

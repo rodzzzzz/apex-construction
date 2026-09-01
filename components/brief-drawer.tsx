@@ -23,7 +23,7 @@ export function BriefDrawer() {
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => (open ? null : closeBrief())}>
-      <SheetContent className="w-full sm:max-w-md">
+      <SheetContent className="w-full border-t-2 border-amber sm:max-w-md">
         <SheetHeader>
           <p className="font-mono text-[11px] tracking-[0.24em] uppercase text-amber">
             Project brief

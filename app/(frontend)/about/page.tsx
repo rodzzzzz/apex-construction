@@ -53,23 +53,24 @@ const AFFILIATIONS = [
 
 const STATS = [
   {
-    value: "2001",
+    value: 2001,
     label: "Founded in Austin",
     note: "Family-owned, Texas-built.",
   },
   {
-    value: "65",
+    value: 65,
     label: "Team members",
     note: "Superintendents, PMs, carpenters.",
   },
   {
-    value: "400",
+    value: 400,
     suffix: "+",
     label: "Projects delivered",
     note: "Across Central Texas.",
   },
   {
-    value: "0.98",
+    value: 0.98,
+    decimals: 2,
     label: "EMR safety rating",
     note: "Below the 1.0 industry standard.",
   },
@@ -87,6 +88,7 @@ export default async function AboutPage() {
         ])}
       />
       <PageHero
+        index="05"
         label="About"
         title="Builders, not brokers"
         description="A general contractor that runs its own sites, employs its own crews, and answers its own phone."
@@ -97,7 +99,7 @@ export default async function AboutPage() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 sm:py-20 md:px-8 md:py-28 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <SectionKicker>The company</SectionKicker>
+            <SectionKicker index="01">The company</SectionKicker>
             <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               Twenty-five years on Texas ground
             </h2>
@@ -137,7 +139,9 @@ export default async function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:py-20 md:px-8 md:py-28">
         <Reveal>
-          <SectionKicker align="center">What we stand on</SectionKicker>
+          <SectionKicker align="center" index="02">
+            What we stand on
+          </SectionKicker>
           <h2 className="mt-7 text-center text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
             Four non-negotiables
           </h2>
@@ -171,7 +175,9 @@ export default async function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-5 md:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <Reveal>
-              <SectionKicker light>Licenses & affiliations</SectionKicker>
+              <SectionKicker light index="03">
+                Licenses & affiliations
+              </SectionKicker>
               <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
                 Paperwork you can verify
               </h2>

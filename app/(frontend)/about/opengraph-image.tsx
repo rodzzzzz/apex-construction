@@ -7,8 +7,8 @@ export const runtime = "nodejs";
 
 export default async function OpenGraphImage() {
   return generateOgImage({
-    title: "Builders, not brokers",
+    title: "Builders,\nnot brokers.",
     eyebrow: "About",
-    footer: "Austin, TX · General Contractor",
+    subtitle: "25+ years on Texas ground · 65 team members",
   });
 }

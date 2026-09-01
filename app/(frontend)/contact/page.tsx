@@ -39,6 +39,7 @@ export default async function ContactPage() {
         ])}
       />
       <PageHero
+        index="07"
         label="Contact"
         title="Talk to a builder today"
         description="Questions about a project, a bid, or working with us — write, call, or visit the office."
@@ -52,7 +53,9 @@ export default async function ContactPage() {
             className="blueprint-grid absolute inset-0 opacity-50"
           />
           <Reveal>
-            <SectionKicker light>Visit</SectionKicker>
+            <SectionKicker light index="01">
+              Visit
+            </SectionKicker>
             <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               Austin, Texas
             </h2>

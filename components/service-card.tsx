@@ -53,13 +53,21 @@ export function ServiceCard({
           src={photo}
           alt={item.name}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-graphite/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="pointer-events-none absolute inset-3 border border-chalk/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-linear-to-t from-graphite/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        {/* crosshair corner ticks */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-3 left-3 size-5 border-t-2 border-l-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-3 bottom-3 size-5 border-r-2 border-b-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
         {linked ? (
-          <span className="absolute top-3 right-3 inline-flex size-8 items-center justify-center bg-graphite/80 text-chalk opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          <span className="absolute top-3 right-3 inline-flex size-8 translate-y-1 items-center justify-center bg-amber text-graphite opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <ArrowUpRight className="size-4" />
           </span>
         ) : null}
@@ -75,7 +83,7 @@ export function ServiceCard({
           <h3 className="line-clamp-2 font-serif text-2xl font-bold leading-tight text-foreground">
             {item.name}
           </h3>
-          <p className="shrink-0 pt-1.5 text-sm tabular-nums tracking-wide text-amber">
+          <p className="shrink-0 border border-amber/40 bg-amber/5 px-2 py-1 font-mono text-xs tabular-nums tracking-wide text-amber">
             from {formatUsd(item.startingAt)}
           </p>
         </header>

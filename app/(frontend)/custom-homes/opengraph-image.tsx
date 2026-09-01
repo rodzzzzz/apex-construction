@@ -10,8 +10,8 @@ export const runtime = "nodejs";
 
 export default async function OpenGraphImage() {
   return generateOgImage({
-    title: "Apex Custom Homes",
+    title: "Apex\nCustom Homes",
     eyebrow: "Custom Homes",
-    footer: "Austin, TX · General Contractor",
+    subtitle: "120+ homes delivered · fixed-price contracts",
   });
 }

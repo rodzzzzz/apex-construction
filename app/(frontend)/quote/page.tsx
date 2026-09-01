@@ -2,6 +2,7 @@ import PageHero from "@/components/page-hero";
 import ConsultationForm from "@/components/consultation-form";
 import { FormPanel } from "@/components/form-panel";
 import { Reveal } from "@/components/reveal";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { SectionKicker } from "@/components/ornament";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/json-ld";
@@ -70,6 +71,7 @@ export default function QuotePage() {
       />
       <JsonLd data={faqJsonLd(FAQS)} />
       <PageHero
+        index="06"
         label="Get a quote"
         title="Start with a straight answer"
         description="Book a consultation and we will walk the site, frame the budget, and tell you what your project really takes."
@@ -83,7 +85,9 @@ export default function QuotePage() {
             className="blueprint-grid absolute inset-0 opacity-50"
           />
           <Reveal>
-            <SectionKicker light>How it works</SectionKicker>
+            <SectionKicker light index="01">
+              How it works
+            </SectionKicker>
             <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               What happens after you write
             </h2>
@@ -127,23 +131,9 @@ export default function QuotePage() {
             Questions we are often asked
           </h2>
         </Reveal>
-        <dl className="mt-14 grid gap-12">
-          {FAQS.map((faq, index) => (
-            <Reveal key={faq.question} delay={Math.min(index, 3) * 80}>
-              <div className="border-t border-amber/35 pt-7">
-                <p className="font-mono text-[11px] tracking-[0.22em] text-amber uppercase">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <dt className="mt-4 font-serif text-2xl font-bold md:text-3xl">
-                  {faq.question}
-                </dt>
-                <dd className="mt-3 text-base leading-[1.8] text-muted-foreground">
-                  {faq.answer}
-                </dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+        <div className="mt-14">
+          <FaqAccordion faqs={FAQS} />
+        </div>
       </section>
     </main>
   );

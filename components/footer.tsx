@@ -60,6 +60,9 @@ export default function Footer({ settings }: { settings: SiteSetting }) {
             <p className="mt-7 max-w-xs text-base leading-relaxed text-chalk/70">
               {settings.tagline}
             </p>
+            <p className="mt-3 font-mono text-[10px] tracking-[0.24em] text-chalk/40 uppercase">
+              Est. 2001 · Austin, TX
+            </p>
             <div className="mt-5 flex items-center gap-2.5">
               {social.map((item) => (
                 <a

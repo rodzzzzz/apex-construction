@@ -4,6 +4,7 @@ import { FormPanel } from "@/components/form-panel";
 import { HeroAtmosphere } from "@/components/hero-atmosphere";
 import { Ornament, SectionKicker } from "@/components/ornament";
 import { Reveal } from "@/components/reveal";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { StatsBand } from "@/components/stats-band";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/json-ld";
@@ -67,25 +68,25 @@ const FAQS = [
 
 const STATS = [
   {
-    value: "120",
+    value: 120,
     suffix: "+",
     label: "Custom homes delivered",
     note: "Since 2004.",
   },
   {
-    value: "14",
+    value: 14,
     suffix: "mo",
     label: "Average build time",
     note: "From groundbreaking to keys.",
   },
   {
-    value: "100",
+    value: 100,
     suffix: "%",
     label: "Fixed-price contracts",
     note: "No cost-plus drift.",
   },
   {
-    value: "12",
+    value: 12,
     suffix: "mo",
     label: "Workmanship warranty",
     note: "Plus an 11-month check-in.",
@@ -131,12 +132,18 @@ export default async function CustomHomesPage() {
         <div className="relative mx-auto flex min-h-svh max-w-7xl flex-col justify-end px-5 pb-16 pt-32 md:px-8 md:pb-24">
           <div className="animate-hero flex w-fit max-w-full flex-col">
             <p className="font-mono text-[10px] tracking-[0.36em] text-amber uppercase sm:text-[11px] sm:tracking-[0.42em]">
+              <span className="tabular-nums text-amber/55">
+                02
+                <span className="mx-1.5 text-amber/35">/</span>
+              </span>
               Custom homes
             </p>
             <Ornament light className="mt-5 sm:mt-7" />
           </div>
-          <h1 className="animate-hero animate-hero-delay-2 mt-6 max-w-3xl text-balance font-serif text-5xl font-bold leading-[1.05] text-chalk md:text-7xl lg:text-[5.25rem]">
-            {homes.title}
+          <h1 className="line-rise-mask mt-6 max-w-3xl">
+            <span className="animate-hero-rise animate-hero-delay-1 block text-balance font-serif text-5xl font-bold leading-[1.05] text-chalk md:text-7xl lg:text-[5.25rem]">
+              {homes.title}
+            </span>
           </h1>
           <p className="animate-hero animate-hero-delay-3 mt-5 max-w-xl text-lg leading-relaxed text-chalk/80 sm:mt-8 sm:text-xl">
             {homes.intro}
@@ -163,7 +170,7 @@ export default async function CustomHomesPage() {
       {features.length > 0 ? (
         <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <Reveal>
-            <SectionKicker>The program</SectionKicker>
+            <SectionKicker index="01">The program</SectionKicker>
             <h2 className="mt-7 max-w-2xl text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               Built around one promise
             </h2>
@@ -197,23 +204,9 @@ export default async function CustomHomesPage() {
             Questions we are often asked
           </h2>
         </Reveal>
-        <dl className="mt-14 grid gap-12">
-          {FAQS.map((faq, index) => (
-            <Reveal key={faq.question} delay={Math.min(index, 3) * 80}>
-              <div className="border-t border-amber/35 pt-7">
-                <p className="font-mono text-[11px] tracking-[0.22em] text-amber uppercase">
-                  {pad(index + 1)}
-                </p>
-                <dt className="mt-4 font-serif text-2xl font-bold md:text-3xl">
-                  {faq.question}
-                </dt>
-                <dd className="mt-3 text-base leading-[1.8] text-muted-foreground">
-                  {faq.answer}
-                </dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+        <div className="mt-14">
+          <FaqAccordion faqs={FAQS} />
+        </div>
       </section>
 
       <section id="inquire" className="scroll-mt-24 bg-secondary">
@@ -224,7 +217,9 @@ export default async function CustomHomesPage() {
               className="blueprint-grid absolute inset-0 opacity-50"
             />
             <Reveal>
-              <SectionKicker light>Inquire</SectionKicker>
+              <SectionKicker light index="02">
+                Inquire
+              </SectionKicker>
               <h2 className="mt-7 font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
                 Tell us about your land and your plans
               </h2>

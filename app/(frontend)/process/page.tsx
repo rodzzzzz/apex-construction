@@ -4,6 +4,7 @@ import { ProcessSteps } from "@/components/process-steps";
 import { QuoteInvite } from "@/components/quote-invite";
 import { StatsBand } from "@/components/stats-band";
 import { Reveal } from "@/components/reveal";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { SectionKicker } from "@/components/ornament";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/json-ld";
@@ -90,23 +91,23 @@ const FAQS = [
 
 const STATS = [
   {
-    value: "96",
+    value: 96,
     suffix: "%",
     label: "On-time completions",
     note: "Last five fiscal years.",
   },
   {
-    value: "0",
+    value: 0,
     label: "Litigated change disputes",
     note: "In 25 years of business.",
   },
   {
-    value: "52",
+    value: 52,
     label: "Weekly reports / year",
     note: "For every active project.",
   },
   {
-    value: "12",
+    value: 12,
     suffix: "mo",
     label: "Workmanship warranty",
     note: "In writing, on every job.",
@@ -124,6 +125,7 @@ export default function ProcessPage() {
       />
       <JsonLd data={faqJsonLd(FAQS)} />
       <PageHero
+        index="04"
         label="Process"
         title="How an Apex build runs"
         description="Fixed prices, weekly reporting, and a schedule you can hold us to — here is exactly how a project moves through our shop."
@@ -133,7 +135,7 @@ export default function ProcessPage() {
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:py-20 md:px-8 md:py-28">
         <Reveal>
-          <SectionKicker>Phases of a project</SectionKicker>
+          <SectionKicker index="01">Phases of a project</SectionKicker>
           <h2 className="mt-7 max-w-2xl text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
             From first call to year-one check-in
           </h2>
@@ -147,7 +149,7 @@ export default function ProcessPage() {
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <Reveal>
-              <SectionKicker>What to expect</SectionKicker>
+              <SectionKicker index="02">What to expect</SectionKicker>
               <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl">
                 Communication, engineered
               </h2>
@@ -171,13 +173,21 @@ export default function ProcessPage() {
             </ul>
           </div>
           <div className="relative min-w-0">
-            <div className="relative sticky top-28 aspect-4/5 overflow-hidden">
+            <div className="group relative sticky top-28 aspect-4/5 overflow-hidden">
               <Image
                 src={PLACEHOLDER_IMAGES.service}
                 alt="Superintendent reviewing plans on an active site"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute top-3 left-3 size-5 border-t-2 border-l-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-3 bottom-3 size-5 border-r-2 border-b-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
               <div className="pointer-events-none absolute inset-3 border border-chalk/35" />
             </div>
@@ -192,23 +202,9 @@ export default function ProcessPage() {
             Questions we are often asked
           </h2>
         </Reveal>
-        <dl className="mt-14 grid gap-12">
-          {FAQS.map((faq, index) => (
-            <Reveal key={faq.question} delay={Math.min(index, 3) * 80}>
-              <div className="border-t border-amber/35 pt-7">
-                <p className="font-mono text-[11px] tracking-[0.22em] text-amber uppercase">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <dt className="mt-4 font-serif text-2xl font-bold md:text-3xl">
-                  {faq.question}
-                </dt>
-                <dd className="mt-3 text-base leading-[1.8] text-muted-foreground">
-                  {faq.answer}
-                </dd>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
+        <div className="mt-14">
+          <FaqAccordion faqs={FAQS} />
+        </div>
       </section>
 
       <QuoteInvite />

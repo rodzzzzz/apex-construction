@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 import { AddToBriefButton } from "@/components/add-to-brief-button";
-import { Ornament, SectionKicker } from "@/components/ornament";
+import { SectionKicker } from "@/components/ornament";
 import { QuoteInvite } from "@/components/quote-invite";
 import { Reveal } from "@/components/reveal";
 import { buttonVariants } from "@/components/ui/button";
@@ -105,21 +105,26 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pb-24">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-chalk/70 uppercase transition-colors duration-500 hover:text-chalk"
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-chalk/70 uppercase transition-colors duration-300 hover:text-chalk"
           >
             <ArrowLeft className="size-3.5" />
             All services
           </Link>
-          <div className="animate-hero mt-6 flex flex-col items-start gap-4">
+          <div className="mt-6 flex flex-col items-start gap-4">
             {categoryName ? (
-              <p className="font-mono text-[11px] tracking-[0.32em] text-amber uppercase">
+              <p className="animate-hero font-mono text-[11px] tracking-[0.32em] text-amber uppercase">
                 {categoryName}
               </p>
             ) : null}
-            <h1 className="max-w-3xl text-balance font-serif text-4xl font-bold leading-[1.08] text-chalk md:text-6xl lg:text-7xl">
-              {service.name}
+            <h1 className="line-rise-mask max-w-3xl">
+              <span className="animate-hero-rise animate-hero-delay-1 block text-balance font-serif text-4xl font-bold leading-[1.02] text-chalk md:text-6xl lg:text-7xl">
+                {service.name}
+              </span>
             </h1>
-            <Ornament light className="max-w-32" />
+            <div
+              aria-hidden
+              className="animate-hero-draw animate-hero-delay-2 mt-2 h-px w-24 bg-amber sm:w-32"
+            />
           </div>
         </div>
       </section>
@@ -127,7 +132,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:py-20 md:px-8 md:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
           <Reveal>
-            <SectionKicker>Scope of work</SectionKicker>
+            <SectionKicker index="01">Scope of work</SectionKicker>
             <p className="mt-7 max-w-2xl text-xl leading-[1.7] text-foreground">
               {service.description}
             </p>
@@ -216,7 +221,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <Reveal>
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <SectionKicker>Related work</SectionKicker>
+                <SectionKicker index="02">Related work</SectionKicker>
                 <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:text-4xl">
                   Pairs well with
                 </h2>

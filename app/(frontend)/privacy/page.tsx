@@ -38,6 +38,7 @@ export default function PrivacyPage() {
         ])}
       />
       <PageHero
+        index="08"
         label="Privacy"
         title="How we look after your details"
         description="We collect only what we need to schedule consultations, prepare quotes, and answer messages."

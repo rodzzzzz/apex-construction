@@ -10,11 +10,11 @@ export async function generateImage({ params }: ImageProps) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
   return {
-    title: service
-      ? `${service.name} — from ${formatUsd(service.startingAt)}`
-      : "Services",
+    title: service ? service.name : "Services",
+    subtitle: service
+      ? `from ${formatUsd(service.startingAt)} · Austin, TX`
+      : undefined,
     eyebrow: "Services",
-    footer: "Austin, TX · General Contractor",
     alt: ogAlt(
       service ? `${service.name} in Austin, TX` : "Construction services",
       "Services",

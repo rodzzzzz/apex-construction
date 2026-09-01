@@ -46,6 +46,7 @@ export default async function ServicesPage() {
       />
       <JsonLd data={servicesJsonLd({ categories, items })} />
       <PageHero
+        index="01"
         label="Services"
         title="Every scope, priced straight"
         description="A transparent catalog of services with honest starting prices — add what you need to a brief and request a firm quote."

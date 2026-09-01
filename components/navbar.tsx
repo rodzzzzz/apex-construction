@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils";
 import { briefCount, useBrief } from "@/lib/brief";
 
 const NAV_LINKS = [
-  { href: "/services", label: "Services" },
-  { href: "/custom-homes", label: "Custom Homes" },
-  { href: "/projects", label: "Projects" },
-  { href: "/process", label: "Process" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/services", label: "Services", index: "01" },
+  { href: "/custom-homes", label: "Custom Homes", index: "02" },
+  { href: "/projects", label: "Projects", index: "03" },
+  { href: "/process", label: "Process", index: "04" },
+  { href: "/about", label: "About", index: "05" },
+  { href: "/contact", label: "Contact", index: "06" },
 ] as const;
 
 export default function Navbar() {
@@ -84,18 +84,31 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative font-mono text-[11px] tracking-[0.16em] uppercase transition-colors duration-500 lg:text-[12px] lg:tracking-[0.18em]",
+                    "group relative font-mono text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 lg:text-[12px] lg:tracking-[0.18em]",
                     onHero
                       ? "text-chalk/75 hover:text-chalk"
                       : "text-muted-foreground hover:text-foreground",
                     isActive && (onHero ? "text-amber" : "text-amber"),
                   )}
                 >
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "mr-1.5 hidden tabular-nums text-[9px] transition-colors duration-300 xl:inline",
+                      isActive
+                        ? "text-amber/80"
+                        : "text-muted-foreground/60 group-hover:text-amber/70",
+                    )}
+                  >
+                    {link.index}
+                  </span>
                   {link.label}
                   <span
                     className={cn(
-                      "absolute -bottom-1 left-0 h-px w-full origin-left bg-amber transition-transform duration-500",
-                      isActive ? "scale-x-100" : "scale-x-0",
+                      "absolute -bottom-1 left-0 h-px w-full origin-left bg-amber transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                      isActive
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100",
                     )}
                   />
                 </Link>

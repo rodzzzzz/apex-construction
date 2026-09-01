@@ -71,6 +71,7 @@ export default async function ProjectsPage() {
         ])}
       />
       <PageHero
+        index="03"
         label="Projects"
         title="Work we can point to"
         description="Recent sites, finished builds, and the details in between — photographed as delivered."

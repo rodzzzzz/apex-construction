@@ -3,10 +3,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 import { HeroAtmosphere } from "@/components/hero-atmosphere";
-import { Ornament, SectionKicker } from "@/components/ornament";
+import { SectionKicker } from "@/components/ornament";
 import { QuoteInvite } from "@/components/quote-invite";
-import { StatsBand } from "@/components/stats-band";
+import { StatsBand, type Stat } from "@/components/stats-band";
 import { ProcessSteps } from "@/components/process-steps";
+import { CredentialsMarquee } from "@/components/credentials-marquee";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { Reveal } from "@/components/reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
@@ -21,31 +23,46 @@ import { PLACEHOLDER_IMAGES } from "@/lib/brand";
 import { cn, mediaUrl } from "@/lib/utils";
 import type { Media } from "@/payload-types";
 
-const STATS = [
+const MARQUEE_ITEMS = [
+  "Licensed · Bonded · Insured",
+  "TX GC Lic. #42-8137",
+  "Est. 2001 · Austin, TX",
+  "400+ Projects Delivered",
+  "2.1M Sq Ft Built",
+  "EMR 0.98 Safety Rating",
+  "Fixed-Price Contracts",
+  "Weekly Site Reporting",
+] as const;
+
+const STATS: Stat[] = [
   {
-    value: "25",
+    value: 25,
     suffix: "+",
+    decimals: 0,
     label: "Years on the ground",
     note: "Serving Central Texas since 2001.",
   },
   {
-    value: "400",
+    value: 400,
     suffix: "+",
+    decimals: 0,
     label: "Projects delivered",
     note: "Commercial, custom residential, civil.",
   },
   {
-    value: "2.1",
+    value: 2.1,
     suffix: "M",
+    decimals: 1,
     label: "Square feet built",
     note: "From tenant finish-outs to campuses.",
   },
   {
-    value: "0.98",
+    value: 0.98,
+    decimals: 2,
     label: "EMR safety rating",
     note: "Far below the industry average of 1.0.",
   },
-] as const;
+];
 
 const PROCESS = [
   {
@@ -129,7 +146,9 @@ export default async function HomePage() {
   return (
     <main className="overflow-x-clip">
       <JsonLd data={faqJsonLd(FAQS)} />
-      <section className="relative min-h-svh overflow-hidden">
+
+      {/* ——— Hero: left-aligned drafting sheet ——— */}
+      <section className="relative flex min-h-svh flex-col overflow-hidden">
         <Image
           src={hero}
           alt="An Apex Construction site at dusk"
@@ -140,21 +159,35 @@ export default async function HomePage() {
         />
         <HeroAtmosphere />
 
-        <div className="relative mx-auto flex min-h-svh max-w-5xl flex-col items-center justify-center px-6 py-28 text-center sm:px-8 sm:py-36">
-          <div className="animate-hero flex w-fit max-w-full flex-col items-center">
-            <p className="font-mono text-[10px] tracking-[0.36em] text-amber uppercase sm:text-[11px] sm:tracking-[0.42em]">
-              Austin, TX · General Contractor
-            </p>
-            <Ornament light className="mt-5 sm:mt-7" />
-          </div>
-          <h1 className="animate-hero animate-hero-delay-2 mt-6 max-w-[20ch] text-balance font-serif text-5xl font-bold leading-[1.05] text-chalk sm:mt-8 md:text-7xl lg:text-[5.25rem]">
-            {settings.tagline}
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pt-32 pb-14 sm:px-8 md:pb-20 lg:justify-center">
+          <p className="animate-hero font-mono text-[10px] tracking-[0.3em] text-amber uppercase sm:text-[11px] sm:tracking-[0.34em]">
+            30.2672° N / 97.7431° W — Austin, TX
+          </p>
+
+          <h1 className="mt-6 max-w-[16ch] font-serif text-[13vw] leading-[0.98] font-bold tracking-[-0.02em] text-chalk sm:text-7xl lg:text-[6.5rem]">
+            <span className="line-rise-mask">
+              <span className="animate-hero-rise animate-hero-delay-1 block">
+                Built right.
+              </span>
+            </span>
+            <span className="line-rise-mask">
+              <span className="animate-hero-rise animate-hero-delay-2 block text-amber">
+                Built to last.
+              </span>
+            </span>
           </h1>
-          <p className="animate-hero animate-hero-delay-3 mt-5 max-w-xl text-lg leading-relaxed text-chalk/80 sm:mt-8 sm:text-xl md:text-2xl">
+
+          <div
+            aria-hidden
+            className="animate-hero-draw animate-hero-delay-3 mt-8 h-px w-24 bg-amber sm:w-32"
+          />
+
+          <p className="animate-hero animate-hero-delay-3 mt-6 max-w-md text-base leading-relaxed text-chalk/75 md:text-lg">
             Commercial, custom residential, and design-build construction across
             Central Texas.
           </p>
-          <div className="animate-hero animate-hero-delay-4 mt-8 flex w-full max-w-md flex-col items-stretch gap-3 sm:mt-12 sm:max-w-none sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+
+          <div className="animate-hero animate-hero-delay-4 mt-9 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/quote"
               className={cn(
@@ -163,12 +196,13 @@ export default async function HomePage() {
               )}
             >
               Get a quote
+              <ArrowUpRight className="size-4" />
             </Link>
             <Link
               href="/services"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "border-chalk/35 text-xs tracking-[0.22em] text-chalk uppercase hover:border-amber hover:bg-transparent hover:text-chalk",
+                "border-chalk/35 text-xs tracking-[0.22em] text-chalk uppercase hover:border-amber hover:bg-transparent hover:text-amber",
               )}
             >
               Explore services
@@ -176,17 +210,30 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <p className="animate-hero animate-hero-delay-4 pointer-events-none absolute inset-x-0 bottom-5 text-center font-mono text-[10px] tracking-[0.38em] text-chalk/45 uppercase sm:bottom-8">
-          Scroll
-        </p>
+        {/* vertical scroll cue */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute right-6 bottom-8 hidden flex-col items-center gap-3 lg:flex"
+        >
+          <span className="font-mono text-[10px] tracking-[0.34em] text-chalk/40 uppercase [writing-mode:vertical-rl]">
+            Scroll
+          </span>
+          <span className="relative h-16 w-px overflow-hidden bg-chalk/15">
+            <span className="animate-hero absolute inset-x-0 top-0 h-1/2 bg-amber [animation-name:fade-up]">
+              <span className="sr-only" />
+            </span>
+          </span>
+        </div>
       </section>
+
+      <CredentialsMarquee items={MARQUEE_ITEMS} />
 
       <StatsBand stats={STATS} />
 
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 sm:py-20 md:px-8 md:py-28 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <SectionKicker>The company</SectionKicker>
+            <SectionKicker index="01">The company</SectionKicker>
             <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               Built on precision, schedules, and straight answers
             </h2>
@@ -205,17 +252,26 @@ export default async function HomePage() {
               )}
             >
               About Apex
+              <ArrowUpRight className="size-3.5" />
             </Link>
           </Reveal>
 
           <Reveal delay={120} className="relative min-w-0">
-            <div className="relative mx-auto aspect-4/5 w-full max-h-[min(32rem,80vh)] overflow-hidden lg:max-h-none">
+            <div className="group relative mx-auto aspect-4/5 w-full max-h-[min(32rem,80vh)] overflow-hidden lg:max-h-none">
               <Image
                 src={PLACEHOLDER_IMAGES.site}
                 alt="An active Apex Construction site"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute top-3 left-3 size-5 border-t border-l border-amber/0 transition-colors duration-300 group-hover:border-amber"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-3 bottom-3 size-5 border-r border-b border-amber/0 transition-colors duration-300 group-hover:border-amber"
               />
               <div className="pointer-events-none absolute inset-3 border border-chalk/35 sm:inset-4" />
             </div>
@@ -228,18 +284,26 @@ export default async function HomePage() {
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:py-20 md:px-8 md:py-28">
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <SectionKicker align="center">Core services</SectionKicker>
-            <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
-              What we build
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:mt-6">
-              A short list from the catalog — commercial, custom residential,
-              and everything between.
-            </p>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <SectionKicker index="02">Core services</SectionKicker>
+              <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
+                What we build
+              </h2>
+            </div>
+            <Link
+              href="/services"
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "w-fit text-xs tracking-[0.2em] uppercase",
+              )}
+            >
+              The full catalog
+              <ArrowUpRight className="size-3.5" />
+            </Link>
           </div>
         </Reveal>
-        <div className="mt-10 grid auto-rows-fr items-stretch gap-10 sm:mt-16 sm:gap-8 md:grid-cols-2">
+        <div className="mt-10 grid auto-rows-fr items-stretch gap-10 sm:mt-16 md:grid-cols-2">
           {services.length > 0 ? (
             services.map((service, index) => (
               <Reveal
@@ -261,19 +325,6 @@ export default async function HomePage() {
             </p>
           )}
         </div>
-        <Reveal>
-          <div className="mt-10 flex justify-center sm:mt-14">
-            <Link
-              href="/services"
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "text-xs tracking-[0.2em] uppercase",
-              )}
-            >
-              The full catalog
-            </Link>
-          </div>
-        </Reveal>
       </section>
 
       <section className="relative overflow-hidden border-y border-amber/25 bg-graphite py-16 text-chalk sm:py-20 md:py-28">
@@ -287,6 +338,7 @@ export default async function HomePage() {
             kicker="The Apex method"
             title="A process built to remove surprises"
             light
+            numbered
           />
           <Reveal delay={200}>
             <Link
@@ -297,6 +349,7 @@ export default async function HomePage() {
               )}
             >
               See the full process
+              <ArrowUpRight className="size-3.5" />
             </Link>
           </Reveal>
         </div>
@@ -306,7 +359,7 @@ export default async function HomePage() {
         <Reveal>
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
-              <SectionKicker>Recent work</SectionKicker>
+              <SectionKicker index="03">Recent work</SectionKicker>
               <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
                 On the ground and finished
               </h2>
@@ -337,15 +390,22 @@ export default async function HomePage() {
               delay={index * 90}
               className={cn("relative", project.span)}
             >
-              <div className="relative aspect-4/5 overflow-hidden md:aspect-[4/3]">
+              <div className="group relative aspect-4/5 overflow-hidden md:aspect-[4/3]">
                 <Image
                   src={project.src}
                   alt={project.caption}
                   fill
-                  className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="pointer-events-none absolute inset-3 border border-chalk/0 transition-colors duration-500 hover:border-chalk/40" />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute top-3 left-3 size-5 border-t border-l border-chalk/0 transition-colors duration-300 group-hover:border-amber"
+                />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute right-3 bottom-3 size-5 border-r border-b border-chalk/0 transition-colors duration-300 group-hover:border-amber"
+                />
                 <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-graphite/85 via-graphite/30 to-transparent p-5 pt-16 md:p-6">
                   <span className="mb-3 block h-px w-8 bg-amber" />
                   <p className="font-serif text-lg font-bold text-chalk md:text-xl">
@@ -375,7 +435,7 @@ export default async function HomePage() {
         </div>
         <div className="flex min-w-0 flex-col justify-center bg-secondary px-5 py-16 sm:px-8 sm:py-20 md:px-16 lg:px-20 lg:py-24">
           <Reveal>
-            <SectionKicker>Custom homes</SectionKicker>
+            <SectionKicker index="04">Custom homes</SectionKicker>
             <h2 className="mt-7 text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               {customHomes.title}
             </h2>
@@ -393,36 +453,23 @@ export default async function HomePage() {
               )}
             >
               Explore the program
+              <ArrowUpRight className="size-3.5" />
             </Link>
           </Reveal>
         </div>
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-20 md:px-8 md:py-28 ">
+        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-20 md:px-8 md:py-28">
           <Reveal>
             <SectionKicker align="center">Good to know</SectionKicker>
             <h2 className="mt-7 text-center text-balance font-serif text-3xl font-bold leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
               Questions we are often asked
             </h2>
           </Reveal>
-          <dl className="mt-14 grid gap-12">
-            {FAQS.map((faq, index) => (
-              <Reveal key={faq.question} delay={Math.min(index, 3) * 80}>
-                <div className="border-t border-amber/35 pt-7">
-                  <p className="font-mono text-[11px] tracking-[0.22em] text-amber uppercase">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <dt className="mt-4 font-serif text-2xl font-bold md:text-3xl">
-                    {faq.question}
-                  </dt>
-                  <dd className="mt-3 text-base leading-[1.8] text-muted-foreground">
-                    {faq.answer}
-                  </dd>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
+          <div className="mt-14">
+            <FaqAccordion faqs={FAQS} />
+          </div>
         </div>
       </section>
 

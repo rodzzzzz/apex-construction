@@ -15,6 +15,7 @@ export default function BriefPage() {
   return (
     <main>
       <PageHero
+        index="QB"
         label="Quote builder"
         title="Your brief, itemized"
         description="Review the services you staged, tell us about the site, and our estimating team comes back with firm numbers."

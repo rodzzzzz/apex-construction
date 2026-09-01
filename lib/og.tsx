@@ -8,9 +8,12 @@ export const OG_CONTENT_TYPE = "image/png";
 export const OG_ALT =
   "Apex Construction — general contractor and custom home builder in Austin, Texas.";
 
+const PAD = 52;
+
 type OgImageOptions = {
   title: string;
   eyebrow?: string;
+  subtitle?: string;
   footer?: string;
 };
 
@@ -53,18 +56,25 @@ async function loadOgFonts() {
   ];
 }
 
+/** Clamp title size by length so nothing clips or overflows. */
 function titleFontSize(title: string) {
-  if (title.length > 50) return 52;
-  if (title.length > 35) return 62;
-  return 74;
+  const len = title.length;
+  if (len <= 18) return 88;
+  if (len <= 28) return 76;
+  if (len <= 40) return 64;
+  if (len <= 56) return 54;
+  return 46;
 }
 
 export async function generateOgImage({
   title,
   eyebrow = SITE_NAME,
+  subtitle,
   footer,
 }: OgImageOptions) {
   const fonts = await loadOgFonts();
+  const titleSize = titleFontSize(title);
+  const titleLines = title.split("\n");
 
   return new ImageResponse(
     <div
@@ -77,15 +87,17 @@ export async function generateOgImage({
         position: "relative",
       }}
     >
+      {/* blueprint grid */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background:
+          backgroundImage:
             "linear-gradient(to right, rgba(122,127,138,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(122,127,138,0.07) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
+      {/* vignette + amber wash */}
       <div
         style={{
           position: "absolute",
@@ -102,13 +114,13 @@ export async function generateOgImage({
             "linear-gradient(115deg, rgba(232,163,61,0.10) 0%, transparent 45%)",
         }}
       />
-
+      {/* watermark apex glyph on the right */}
       <div
         style={{
           position: "absolute",
-          left: "50%",
+          right: -60,
           top: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "translateY(-50%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -117,7 +129,7 @@ export async function generateOgImage({
         <span
           style={{
             fontFamily: "Archivo, system-ui, sans-serif",
-            fontSize: 380,
+            fontSize: 430,
             fontWeight: 700,
             letterSpacing: "-0.04em",
             color: "rgba(232,163,61,0.05)",
@@ -128,157 +140,185 @@ export async function generateOgImage({
         </span>
       </div>
 
+      {/* frame */}
       <div
         style={{
+          position: "absolute",
+          top: PAD - 8,
+          left: PAD - 8,
+          right: PAD - 8,
+          bottom: PAD - 8,
+          border: "1px solid rgba(232,163,61,0.40)",
+        }}
+      />
+      {/* corner brackets */}
+      <div
+        style={{
+          position: "absolute",
+          top: PAD - 11,
+          left: PAD - 11,
+          width: 48,
+          height: 48,
+          borderTop: "4px solid #E8A33D",
+          borderLeft: "4px solid #E8A33D",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: PAD - 11,
+          right: PAD - 11,
+          width: 48,
+          height: 48,
+          borderBottom: "4px solid #E8A33D",
+          borderRight: "4px solid #E8A33D",
+        }}
+      />
+
+      {/* eyebrow — absolutely centered top */}
+      <div
+        style={{
+          position: "absolute",
+          top: PAD + 14,
+          left: 0,
+          right: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 14,
+        }}
+      >
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            backgroundColor: "#E8A33D",
+            flexShrink: 0,
+          }}
+        />
+        <span
+          style={{
+            fontSize: 12,
+            letterSpacing: 26,
+            textTransform: "uppercase",
+            color: BRAND.amber,
+            fontFamily: "IBM Plex Mono, monospace",
+          }}
+        >
+          {eyebrow}
+        </span>
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            backgroundColor: "#E8A33D",
+            flexShrink: 0,
+          }}
+        />
+      </div>
+
+      {/* title block — absolutely positioned, left-aligned like a drafting sheet */}
+      <div
+        style={{
+          position: "absolute",
+          top: 168,
+          left: PAD + 40,
+          right: PAD + 40,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          margin: 44,
-          flexGrow: 1,
-          border: "1px solid rgba(232,163,61,0.40)",
-          position: "relative",
+          alignItems: "flex-start",
         }}
       >
         <div
           style={{
-            position: "absolute",
-            top: -1,
-            left: -1,
-            width: 48,
-            height: 48,
-            borderTop: "4px solid #E8A33D",
-            borderLeft: "4px solid #E8A33D",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: -1,
-            right: -1,
-            width: 48,
-            height: 48,
-            borderBottom: "4px solid #E8A33D",
-            borderRight: "4px solid #E8A33D",
-          }}
-        />
-
-        <div
-          style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            paddingTop: 38,
-            paddingRight: 52,
-            paddingBottom: 0,
-            paddingLeft: 52,
+            alignItems: "flex-start",
           }}
         >
-          <div
-            style={{
-              fontSize: 11,
-              letterSpacing: 26,
-              textTransform: "uppercase",
-              color: BRAND.amber,
-              fontFamily: "IBM Plex Mono, monospace",
-            }}
-          >
-            {eyebrow}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              marginTop: 16,
-            }}
-          >
+          {titleLines.map((line, index) => (
             <span
+              key={index}
               style={{
-                height: 1,
-                flex: 1,
-                background: "rgba(232,163,61,0.5)",
+                fontFamily: "Archivo, system-ui, sans-serif",
+                fontSize: titleSize,
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.06,
+                color: BRAND.chalk,
+                textAlign: "left",
               }}
-            />
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                backgroundColor: "#E8A33D",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                height: 1,
-                flex: 1,
-                background: "rgba(232,163,61,0.5)",
-              }}
-            />
-          </div>
+            >
+              {line}
+            </span>
+          ))}
         </div>
-
-        <div
+        {/* amber rule under title */}
+        <span
           style={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            paddingLeft: 52,
-            paddingRight: 52,
-            alignItems: "center",
-            justifyContent: "center",
+            marginTop: 26,
+            width: 120,
+            height: 4,
+            backgroundColor: "#E8A33D",
           }}
-        >
-          <div
-            style={{
-              fontFamily: "Archivo, system-ui, sans-serif",
-              fontSize: titleFontSize(title),
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.08,
-              color: BRAND.chalk,
-              textAlign: "center",
-              maxWidth: 1040,
-            }}
-          >
-            {title}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingTop: 24,
-            paddingRight: 52,
-            paddingBottom: 38,
-            paddingLeft: 52,
-            borderTop: "1px solid rgba(232,163,61,0.22)",
-          }}
-        >
+        />
+        {subtitle ? (
           <span
             style={{
-              fontSize: 11,
-              letterSpacing: 14,
-              textTransform: "uppercase",
-              color: BRAND.amber,
+              marginTop: 22,
               fontFamily: "IBM Plex Mono, monospace",
+              fontSize: 20,
+              letterSpacing: 2,
+              color: "rgba(242,243,245,0.72)",
             }}
           >
-            {footer ?? "Austin, TX · General Contractor"}
+            {subtitle}
           </span>
-          <span
-            style={{
-              fontSize: 11,
-              letterSpacing: 14,
-              color: "rgba(242,243,245,0.6)",
-              fontFamily: "IBM Plex Mono, monospace",
-            }}
-          >
-            {host}
-          </span>
-        </div>
+        ) : null}
       </div>
+
+      {/* footer — two absolutely pinned spans, immune to space-between drift.
+          letterSpacing adds trailing space in Satori's width calc, so the
+          right span is padded extra to keep the glyphs clear of the frame. */}
+      <span
+        style={{
+          position: "absolute",
+          left: PAD + 10,
+          bottom: PAD + 10,
+          fontSize: 12,
+          letterSpacing: 12,
+          textTransform: "uppercase",
+          color: BRAND.amber,
+          fontFamily: "IBM Plex Mono, monospace",
+        }}
+      >
+        {footer ?? "Austin, TX · General Contractor"}
+      </span>
+      <span
+        style={{
+          position: "absolute",
+          right: PAD + 10 + 12,
+          bottom: PAD + 10,
+          fontSize: 12,
+          letterSpacing: 12,
+          textTransform: "uppercase",
+          color: "rgba(242,243,245,0.62)",
+          fontFamily: "IBM Plex Mono, monospace",
+        }}
+      >
+        {host}
+      </span>
+      {/* footer divider line */}
+      <div
+        style={{
+          position: "absolute",
+          left: PAD - 8,
+          right: PAD - 8,
+          bottom: PAD + 52,
+          height: 1,
+          backgroundColor: "rgba(232,163,61,0.22)",
+        }}
+      />
     </div>,
     {
       ...OG_SIZE,

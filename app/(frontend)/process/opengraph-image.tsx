@@ -10,8 +10,8 @@ export const runtime = "nodejs";
 
 export default async function OpenGraphImage() {
   return generateOgImage({
-    title: "How an Apex build runs",
+    title: "How an Apex\nbuild runs.",
     eyebrow: "Process",
-    footer: "Austin, TX · General Contractor",
+    subtitle: "Pre-construction → design → build → handover",
   });
 }

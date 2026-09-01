@@ -22,18 +22,24 @@ export function Ornament({
   );
 }
 
+/**
+ * Drafting-sheet section label: `03 / THE APEX METHOD` with an amber tick rule
+ * that draws in (scaleX) on scroll when `draw` is set.
+ */
 export function SectionKicker({
   children,
   align = "start",
   light = false,
   className,
   index,
+  draw = true,
 }: {
   children: React.ReactNode;
   align?: "start" | "center";
   light?: boolean;
   className?: string;
   index?: string;
+  draw?: boolean;
 }) {
   return (
     <div
@@ -44,15 +50,21 @@ export function SectionKicker({
       )}
     >
       <p className="flex items-center gap-3 font-mono text-[11px] tracking-[0.32em] text-amber uppercase">
-        {index ? <span className="text-amber/60">{index}</span> : null}
+        {index ? (
+          <span className="tabular-nums text-amber/55">
+            {index}
+            <span className="mx-1.5 text-amber/35">/</span>
+          </span>
+        ) : null}
         <span
           aria-hidden
           className={cn(
             "inline-block h-px w-7",
             light ? "bg-amber/50" : "bg-amber/70",
+            draw && "animate-hero-draw animate-hero-delay-1",
           )}
         />
-        {children}
+        <span className="shrink-0">{children}</span>
       </p>
     </div>
   );
