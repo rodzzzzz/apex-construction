@@ -52,7 +52,7 @@ function getDatabaseUrl() {
   const sslMode = url.searchParams.get("sslmode");
 
   if (sslMode === "require" || sslMode === "prefer" || sslMode === "verify-ca") {
-    url.searchParams.set("sslmode", "verify-full");
+    url.searchParams.set("sslmode", "require");
   }
 
   url.searchParams.delete("uselibpqcompat");

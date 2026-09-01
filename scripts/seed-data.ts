@@ -149,7 +149,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Owner's-representation style delivery where we manage budget, schedule, and quality on your behalf — open-book pricing with your interests at the table.",
     startingAt: 12000,
     category: "general-contracting",
-    imageUrl: unsplash("photo-1497366811353-6870744d04b2"),
+    imageUrl: unsplash("photo-1626885930974-4b69aa21bbf9"),
     tags: ["licensed", "insured"],
   },
   {
@@ -159,7 +159,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Retail, office, and medical build-outs delivered around occupancy deadlines — permitting, build, and inspection sequenced so your doors open on the lease date.",
     startingAt: 48,
     category: "general-contracting",
-    imageUrl: unsplash("photo-1449824913935-59a10b8d2000"),
+    imageUrl: unsplash("photo-1497366811353-6870744d04b2"),
     tags: ["fast-track", "permits"],
     quoteable: true,
   },
@@ -170,7 +170,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Foundation, framing, and load-path repairs engineered and stamped — from under-slab plumbing leaks to full pier-and-beam re-piling.",
     startingAt: 8500,
     category: "general-contracting",
-    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98"),
+    imageUrl: unsplash("photo-1589939705384-5185137a7f0f"),
     tags: ["licensed", "warranty"],
   },
 
@@ -193,7 +193,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Schematic through permit-ready construction documents by licensed architects, coordinated with structural and MEP from day one.",
     startingAt: 28000,
     category: "design-build",
-    imageUrl: unsplash("photo-1431576901776-e539bd916ba2"),
+    imageUrl: unsplash("photo-1628900941064-ba8df8b51e4a"),
     tags: ["permits"],
   },
   {
@@ -203,7 +203,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Permit sets, submittals, and plan-review management through the city and county — you never stand in a plan-review line.",
     startingAt: 4800,
     category: "design-build",
-    imageUrl: unsplash("photo-1431576901776-e539bd916ba2"),
+    imageUrl: unsplash("photo-1450101499163-c8848c66ca85"),
     tags: ["permits", "fast-track"],
   },
 
@@ -226,7 +226,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Slope-adapted, view-oriented estates with driveways, water systems, and wildfire-smart detailing engineered for Texas terrain.",
     startingAt: 1850000,
     category: "custom-homes",
-    imageUrl: unsplash("photo-1431576901776-e539bd916ba2"),
+    imageUrl: unsplash("photo-1567596764380-a4ebbf3b05b3"),
     tags: ["licensed", "insured", "sustainable"],
   },
   {
@@ -279,7 +279,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Clinic and practice build-outs with med-gas, lead-lined rooms, and exam-ready mechanical systems coordinated with your equipment vendors.",
     startingAt: 110,
     category: "commercial",
-    imageUrl: unsplash("photo-1519494026892-80bbd2d6fd0d"),
+    imageUrl: unsplash("photo-1629909613654-28e377c37b09"),
     tags: ["licensed", "insured"],
     acceptingProjects: false,
   },
@@ -290,7 +290,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Tilt-wall and steel-frame industrial space — clear heights, dock packages, and heavy power distribution built for operations, not just storage.",
     startingAt: 95,
     category: "commercial",
-    imageUrl: unsplash("photo-1486406146926-c627a92ad1ab"),
+    imageUrl: unsplash("photo-1694885169342-909981fb408a"),
     tags: ["licensed", "insured", "warranty"],
   },
 
@@ -302,7 +302,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Full-gut renovations of Austin homes — layout, systems, and finishes rebuilt for how you live now, with a livable-phase plan if you stay in place.",
     startingAt: 145000,
     category: "remodeling",
-    imageUrl: unsplash("photo-1503387762-592deb58ef4e"),
+    imageUrl: unsplash("photo-1586023492125-27b2c045efd7"),
     tags: ["licensed", "warranty"],
   },
   {
@@ -342,7 +342,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Accessory dwelling units built to Austin's HOME initiative rules — rental income or family space, permitted and delivered turnkey.",
     startingAt: 125000,
     category: "remodeling",
-    imageUrl: unsplash("photo-1600585154340-be6161a56a0c"),
+    imageUrl: unsplash("photo-1619335680796-54f13b88c6ba"),
     tags: ["permits", "fast-track"],
   },
 
@@ -365,7 +365,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Concrete driveways, aprons, and hardscape — reinforced, jointed, and finished for Central Texas clay, not against it.",
     startingAt: 7800,
     category: "civil-sitework",
-    imageUrl: unsplash("photo-1516979187457-637abb4f9353"),
+    imageUrl: unsplash("photo-1654419189750-d3c4ef76df61"),
     tags: ["warranty"],
   },
   {
@@ -375,7 +375,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Engineered retaining walls in segmental block, cast stone, and timber — drainage behind the wall done right, sized for the slope.",
     startingAt: 6500,
     category: "civil-sitework",
-    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98"),
+    imageUrl: unsplash("photo-1780478243212-22537df4d319"),
     tags: ["licensed", "warranty"],
     acceptingProjects: true,
   },
@@ -386,7 +386,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Slab, pier-and-beam, and post-tension foundations engineered for Texas soils — soil reports, design, and pour under one accountable crew.",
     startingAt: 12,
     category: "civil-sitework",
-    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98"),
+    imageUrl: unsplash("photo-1773432114391-f85c1674b233"),
     tags: ["licensed", "insured"],
     quoteable: false,
   },
@@ -411,7 +411,7 @@ export const PROJECT_SEED: Array<{
   {
     caption: "Hill Country estate, stone and steel",
     album: "residential",
-    imageUrl: unsplash("photo-1431576901776-e539bd916ba2", 1600),
+    imageUrl: unsplash("photo-1567596764380-a4ebbf3b05b3", 1600),
   },
   {
     caption: "Clarksville whole-house remodel",
@@ -431,7 +431,7 @@ export const PROJECT_SEED: Array<{
   {
     caption: "ADU over a detached garage",
     album: "residential",
-    imageUrl: unsplash("photo-1518684079-3c830dcef090", 1600),
+    imageUrl: unsplash("photo-1619335680796-54f13b88c6ba", 1600),
   },
   // ——— Commercial ———
   {
@@ -468,7 +468,7 @@ export const PROJECT_SEED: Array<{
   {
     caption: "Tilt-wall warehouse, 40-foot clear",
     album: "industrial",
-    imageUrl: unsplash("photo-1486406146926-c627a92ad1ab", 1600),
+    imageUrl: unsplash("photo-1694885169342-909981fb408a", 1600),
   },
   {
     caption: "Site grading and stormwater infrastructure",
@@ -478,21 +478,21 @@ export const PROJECT_SEED: Array<{
   {
     caption: "Dock package and heavy power distribution",
     album: "industrial",
-    imageUrl: unsplash("photo-1516979187457-637abb4f9353", 1600),
+    imageUrl: unsplash("photo-1635335874521-7987db781153", 1600),
   },
   {
     caption: "Foundation pour, post-tension slab",
     album: "industrial",
-    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98", 1600),
+    imageUrl: unsplash("photo-1773432114391-f85c1674b233", 1600),
   },
   {
     caption: "Retaining walls engineered for the slope",
     album: "industrial",
-    imageUrl: unsplash("photo-1516979187457-637abb4f9353", 1600),
+    imageUrl: unsplash("photo-1780478243212-22537df4d319", 1600),
   },
   {
     caption: "Structural steel going up on Cullen Drive",
     album: "industrial",
-    imageUrl: unsplash("photo-1503387762-592deb58ef4e", 1600),
+    imageUrl: unsplash("photo-1531435338678-4ef2b632e95d", 1600),
   },
 ];
