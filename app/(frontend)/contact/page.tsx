@@ -43,7 +43,7 @@ export default async function ContactPage() {
         label="Contact"
         title="Talk to a builder today"
         description="Questions about a project, a bid, or working with us — write, call, or visit the office."
-        image={PLACEHOLDER_IMAGES.blueprint}
+        image={PLACEHOLDER_IMAGES.contact}
         imageAlt="The Apex Construction office"
       />
       <section className="grid min-w-0 lg:grid-cols-2">

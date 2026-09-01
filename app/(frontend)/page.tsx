@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
 import { HeroAtmosphere } from "@/components/hero-atmosphere";
+import { ImageCorners } from "@/components/image-corners";
 import { SectionKicker } from "@/components/ornament";
 import { QuoteInvite } from "@/components/quote-invite";
 import { StatsBand, type Stat } from "@/components/stats-band";
@@ -159,12 +160,12 @@ export default async function HomePage() {
         />
         <HeroAtmosphere />
 
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-5 pt-32 pb-14 sm:px-8 md:pb-20 lg:justify-center">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-7 pt-32 pb-16 sm:px-10 md:pb-20 lg:justify-center">
           <p className="animate-hero font-mono text-[10px] tracking-[0.3em] text-amber uppercase sm:text-[11px] sm:tracking-[0.34em]">
             30.2672° N / 97.7431° W — Austin, TX
           </p>
 
-          <h1 className="mt-6 max-w-[16ch] font-serif text-[13vw] leading-[0.98] font-bold tracking-[-0.02em] text-chalk sm:text-7xl lg:text-[6.5rem]">
+          <h1 className="mt-6 max-w-[16ch] font-serif text-[clamp(2.75rem,11.5vw,6.5rem)] leading-[0.98] font-bold tracking-[-0.02em] text-chalk">
             <span className="line-rise-mask">
               <span className="animate-hero-rise animate-hero-delay-1 block">
                 Built right.
@@ -265,15 +266,7 @@ export default async function HomePage() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute top-3 left-3 size-5 border-t border-l border-amber/0 transition-colors duration-300 group-hover:border-amber"
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute right-3 bottom-3 size-5 border-r border-b border-amber/0 transition-colors duration-300 group-hover:border-amber"
-              />
-              <div className="pointer-events-none absolute inset-3 border border-chalk/35 sm:inset-4" />
+              <ImageCorners />
             </div>
             <p className="mt-4 text-center font-mono text-[11px] tracking-[0.22em] text-muted-foreground uppercase">
               Site 47 — Cullen Drive, Austin
@@ -398,14 +391,7 @@ export default async function HomePage() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute top-3 left-3 size-5 border-t border-l border-chalk/0 transition-colors duration-300 group-hover:border-amber"
-                />
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute right-3 bottom-3 size-5 border-r border-b border-chalk/0 transition-colors duration-300 group-hover:border-amber"
-                />
+                <ImageCorners />
                 <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-graphite/85 via-graphite/30 to-transparent p-5 pt-16 md:p-6">
                   <span className="mb-3 block h-px w-8 bg-amber" />
                   <p className="font-serif text-lg font-bold text-chalk md:text-xl">
@@ -419,19 +405,22 @@ export default async function HomePage() {
       </section>
 
       <section className="grid min-w-0 lg:grid-cols-2">
-        <div className="relative min-h-[70vw] overflow-hidden sm:min-h-130 lg:min-h-160">
+        <div className="group relative min-h-[85vw] overflow-hidden sm:min-h-[28rem] lg:min-h-160">
           <Image
             src={homesImage}
             alt={customHomes.title}
             fill
-            className="object-cover transition-transform duration-1000 hover:scale-105"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-graphite/50 to-transparent" />
-          <div className="pointer-events-none absolute inset-4 border border-chalk/25 sm:inset-6" />
-          <p className="absolute bottom-6 left-5 font-mono text-[11px] tracking-[0.28em] text-chalk uppercase sm:bottom-10 sm:left-8">
-            Custom homes
-          </p>
+          <div className="absolute inset-0 bg-linear-to-t from-graphite/55 via-graphite/10 to-transparent" />
+          <ImageCorners />
+          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
+            <span aria-hidden className="mb-3 block h-px w-8 bg-amber" />
+            <p className="font-mono text-[11px] tracking-[0.28em] text-chalk uppercase">
+              Custom homes
+            </p>
+          </div>
         </div>
         <div className="flex min-w-0 flex-col justify-center bg-secondary px-5 py-16 sm:px-8 sm:py-20 md:px-16 lg:px-20 lg:py-24">
           <Reveal>

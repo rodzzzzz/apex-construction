@@ -175,7 +175,7 @@ export default function BriefCheckout() {
       >
         <form onSubmit={onSubmit} className="grid gap-5">
           <fieldset disabled={isSubmitting} className="grid gap-5">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
               {PROJECT_STAGE_OPTIONS.map((option) => {
                 const isSelected = projectStage === option.value;
                 return (
@@ -183,7 +183,7 @@ export default function BriefCheckout() {
                     key={option.value}
                     type="button"
                     onClick={() => setProjectStage(option.value)}
-                    className={`h-11 px-2 border font-mono text-[10px] uppercase tracking-[0.1em] transition-colors duration-500 ${
+                    className={`flex h-11 items-center justify-center border px-1.5 text-center font-mono text-[10px] leading-tight uppercase tracking-[0.08em] transition-colors duration-500 sm:px-2 ${
                       isSelected
                         ? "border-primary bg-primary text-primary-foreground"
                         : "border-border hover:border-amber"

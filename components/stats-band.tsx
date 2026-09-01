@@ -38,17 +38,18 @@ export function StatsBand({
             <div
               key={stat.label}
               className={cn(
-                "relative flex flex-col gap-2 px-6 py-10 md:px-8 lg:py-12",
+                "relative flex flex-col gap-2 px-5 py-9 sm:px-8 md:py-10 lg:py-12",
+                // 2-col mobile: right column gets left border, second row gets top border
                 index % 2 === 1 && "border-l border-chalk/10",
                 index >= 2 && "border-t border-chalk/10 lg:border-t-0",
-                index === 1 && "lg:border-l",
-                index === 3 && "lg:border-l",
+                // 4-col desktop: every column except the first gets left border
+                index > 0 && "lg:border-l lg:border-chalk/10",
               )}
             >
               {/* ruler ticks along the top edge */}
               <span
                 aria-hidden
-                className="absolute inset-x-6 top-0 flex h-2 items-start justify-between md:inset-x-8"
+                className="absolute inset-x-5 top-0 flex h-2 items-start justify-between sm:inset-x-8"
               >
                 {Array.from({ length: 11 }).map((_, i) => (
                   <span
@@ -61,13 +62,13 @@ export function StatsBand({
                 ))}
               </span>
               <Reveal delay={index * 90}>
-                <dd className="font-mono text-4xl font-medium tracking-tight text-amber md:text-5xl">
+                <dd className="font-mono text-3xl font-medium tracking-tight text-amber sm:text-4xl md:text-5xl">
                   <CountUp value={stat.value} decimals={stat.decimals ?? 0} />
                   {stat.suffix ? (
                     <span className="text-2xl md:text-3xl">{stat.suffix}</span>
                   ) : null}
                 </dd>
-                <dt className="mt-3 font-mono text-[11px] tracking-[0.2em] text-chalk/70 uppercase">
+                <dt className="mt-3 font-mono text-[10px] tracking-[0.2em] text-chalk/70 uppercase sm:text-[11px]">
                   {stat.label}
                 </dt>
                 {stat.note ? (

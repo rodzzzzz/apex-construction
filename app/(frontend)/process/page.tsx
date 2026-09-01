@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ProcessSteps } from "@/components/process-steps";
 import { QuoteInvite } from "@/components/quote-invite";
 import { StatsBand } from "@/components/stats-band";
+import { ImageCorners } from "@/components/image-corners";
 import { Reveal } from "@/components/reveal";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { SectionKicker } from "@/components/ornament";
@@ -129,7 +130,7 @@ export default function ProcessPage() {
         label="Process"
         title="How an Apex build runs"
         description="Fixed prices, weekly reporting, and a schedule you can hold us to — here is exactly how a project moves through our shop."
-        image={PLACEHOLDER_IMAGES.blueprint}
+        image={PLACEHOLDER_IMAGES.process}
         imageAlt="Blueprints and plans on a site table"
       />
 
@@ -181,15 +182,7 @@ export default function ProcessPage() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute top-3 left-3 size-5 border-t-2 border-l-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute right-3 bottom-3 size-5 border-r-2 border-b-2 border-amber opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <div className="pointer-events-none absolute inset-3 border border-chalk/35" />
+              <ImageCorners />
             </div>
           </div>
         </div>

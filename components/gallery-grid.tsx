@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionKicker } from "@/components/ornament";
+import { ImageCorners } from "@/components/image-corners";
 import { cn } from "@/lib/utils";
 
 type Photo = {
@@ -121,7 +122,7 @@ export function GalleryGrid({
         <header className="flex flex-col gap-6 pt-4 md:flex-row md:items-end md:justify-between">
           <div>
             <SectionKicker>{pad(index)}</SectionKicker>
-            <h2 className="mt-7 font-serif text-3xl leading-[1.12] sm:mt-8 sm:text-4xl md:text-5xl">
+            <h2 className="mt-7 font-serif text-3xl leading-[1.12] font-bold sm:mt-8 sm:text-4xl md:text-5xl">
               {album}
             </h2>
             <p className="mt-4 max-w-lg font-serif text-lg text-muted-foreground italic">
@@ -129,7 +130,7 @@ export function GalleryGrid({
             </p>
           </div>
           <p className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
-            {pad(photos.length)} photographs
+            {pad(photos.length)} projects
           </p>
         </header>
       </Reveal>
@@ -155,7 +156,7 @@ export function GalleryGrid({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 720px"
               />
               <span className="absolute inset-0 bg-graphite/0 transition-colors duration-500 group-hover:bg-graphite/25" />
-              <span className="pointer-events-none absolute inset-3 border border-chalk/0 transition-colors duration-500 group-hover:border-chalk/40" />
+              <ImageCorners />
               <span className="absolute inset-x-0 bottom-0 bg-linear-to-t from-graphite/80 via-graphite/30 to-transparent p-5 pt-16 text-left opacity-100 transition-opacity duration-500 md:p-6 md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
                 <span className="mb-3 block h-px w-8 bg-amber" />
                 <span className="font-serif text-lg leading-snug text-chalk md:text-xl">

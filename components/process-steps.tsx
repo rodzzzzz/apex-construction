@@ -58,13 +58,18 @@ export function ProcessSteps({
             : "mt-14 grid gap-x-12 gap-y-14 md:grid-cols-2 lg:grid-cols-4",
         )}
       >
-        {/* vertical timeline spine that draws downward */}
+        {/* vertical timeline spine that draws downward — centered on the
+            marker column (14px wide on mobile, 16px from sm+) */}
         {vertical ? (
-          <Reveal
-            variant="draw-y"
-            className="absolute top-2 bottom-2 left-[7px] w-px bg-amber/45 sm:left-[9px]"
+          <span
             aria-hidden
-          />
+            className="absolute top-2 bottom-2 left-0 w-3.5 sm:w-4"
+          >
+            <Reveal
+              variant="draw-y"
+              className="absolute inset-y-0 left-1/2 ml-[-0.5px] w-px bg-amber/45"
+            />
+          </span>
         ) : null}
         {steps.map((step, index) => (
           <li

@@ -111,11 +111,11 @@ export function ServiceCard({
             </div>
 
             {canQuote ? (
-              <div className="flex flex-col gap-2 sm:flex-row">
+              <div className="flex flex-col gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="flex-1 border-amber/40 text-foreground hover:border-amber hover:bg-amber hover:text-graphite"
+                  className="w-full border-amber/40 text-foreground hover:border-amber hover:bg-amber hover:text-graphite"
                   onClick={() => {
                     addItem({
                       id: item.id,
@@ -125,12 +125,20 @@ export function ServiceCard({
                     openBrief();
                   }}
                 >
-                  <Plus className="size-3.5" />
-                  Add to brief
+                  <Plus className="size-3.5 shrink-0" />
+                  <span className="truncate">Add to brief</span>
                 </Button>
                 {linked ? (
-                  <Button asChild variant="ghost" size="sm" className="flex-1">
-                    <Link href={serviceHref}>Details</Link>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full text-muted-foreground hover:text-amber"
+                  >
+                    <Link href={serviceHref}>
+                      Details
+                      <ArrowUpRight className="size-3.5 shrink-0" />
+                    </Link>
                   </Button>
                 ) : null}
               </div>

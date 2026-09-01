@@ -149,7 +149,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Owner's-representation style delivery where we manage budget, schedule, and quality on your behalf — open-book pricing with your interests at the table.",
     startingAt: 12000,
     category: "general-contracting",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12"),
+    imageUrl: unsplash("photo-1497366811353-6870744d04b2"),
     tags: ["licensed", "insured"],
   },
   {
@@ -170,7 +170,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Foundation, framing, and load-path repairs engineered and stamped — from under-slab plumbing leaks to full pier-and-beam re-piling.",
     startingAt: 8500,
     category: "general-contracting",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12"),
+    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98"),
     tags: ["licensed", "warranty"],
   },
 
@@ -193,7 +193,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Schematic through permit-ready construction documents by licensed architects, coordinated with structural and MEP from day one.",
     startingAt: 28000,
     category: "design-build",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12"),
+    imageUrl: unsplash("photo-1431576901776-e539bd916ba2"),
     tags: ["permits"],
   },
   {
@@ -203,7 +203,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Permit sets, submittals, and plan-review management through the city and county — you never stand in a plan-review line.",
     startingAt: 4800,
     category: "design-build",
-    imageUrl: unsplash("photo-1454165804606-c3d57bc86b40"),
+    imageUrl: unsplash("photo-1431576901776-e539bd916ba2"),
     tags: ["permits", "fast-track"],
   },
 
@@ -290,7 +290,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Tilt-wall and steel-frame industrial space — clear heights, dock packages, and heavy power distribution built for operations, not just storage.",
     startingAt: 95,
     category: "commercial",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12"),
+    imageUrl: unsplash("photo-1486406146926-c627a92ad1ab"),
     tags: ["licensed", "insured", "warranty"],
   },
 
@@ -354,7 +354,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Grading, drainage, and site preparation — mass excavation to final grade, engineered for stormwater compliance from the first dozer pass.",
     startingAt: 4.5,
     category: "civil-sitework",
-    imageUrl: unsplash("photo-1621905251918-48416bd8575a"),
+    imageUrl: unsplash("photo-1503387762-592deb58ef4e"),
     tags: ["licensed", "insured"],
     quoteable: false,
   },
@@ -386,7 +386,7 @@ export const SERVICE_SEED: ServiceSeed[] = [
       "Slab, pier-and-beam, and post-tension foundations engineered for Texas soils — soil reports, design, and pour under one accountable crew.",
     startingAt: 12,
     category: "civil-sitework",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12"),
+    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98"),
     tags: ["licensed", "insured"],
     quoteable: false,
   },
@@ -468,12 +468,12 @@ export const PROJECT_SEED: Array<{
   {
     caption: "Tilt-wall warehouse, 40-foot clear",
     album: "industrial",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12", 1600),
+    imageUrl: unsplash("photo-1486406146926-c627a92ad1ab", 1600),
   },
   {
     caption: "Site grading and stormwater infrastructure",
     album: "industrial",
-    imageUrl: unsplash("photo-1621905251918-48416bd8575a", 1600),
+    imageUrl: unsplash("photo-1503387762-592deb58ef4e", 1600),
   },
   {
     caption: "Dock package and heavy power distribution",
@@ -483,12 +483,12 @@ export const PROJECT_SEED: Array<{
   {
     caption: "Foundation pour, post-tension slab",
     album: "industrial",
-    imageUrl: unsplash("photo-1541888946425-d81bb19240f5", 1600),
+    imageUrl: unsplash("photo-1573348722427-f1d6819fdf98", 1600),
   },
   {
     caption: "Retaining walls engineered for the slope",
     album: "industrial",
-    imageUrl: unsplash("photo-1581094794329-c8112a89af12", 1600),
+    imageUrl: unsplash("photo-1516979187457-637abb4f9353", 1600),
   },
   {
     caption: "Structural steel going up on Cullen Drive",

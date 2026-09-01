@@ -16,7 +16,7 @@ function findOgBodies(dir: string, acc: string[] = []): string[] {
   return acc;
 }
 
-const W = 1200;
+// canvas width 1200 implied
 const H = 630;
 const FRAME_L = 44;
 const FRAME_R = 1155;

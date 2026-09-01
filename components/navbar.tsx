@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils";
 import { briefCount, useBrief } from "@/lib/brief";
 
 const NAV_LINKS = [
-  { href: "/services", label: "Services", index: "01" },
-  { href: "/custom-homes", label: "Custom Homes", index: "02" },
-  { href: "/projects", label: "Projects", index: "03" },
-  { href: "/process", label: "Process", index: "04" },
-  { href: "/about", label: "About", index: "05" },
-  { href: "/contact", label: "Contact", index: "06" },
+  { href: "/services", label: "Services", short: "Services", index: "01" },
+  { href: "/custom-homes", label: "Custom Homes", short: "Homes", index: "02" },
+  { href: "/projects", label: "Projects", short: "Projects", index: "03" },
+  { href: "/process", label: "Process", short: "Process", index: "04" },
+  { href: "/about", label: "About", short: "About", index: "05" },
+  { href: "/contact", label: "Contact", short: "Contact", index: "06" },
 ] as const;
 
 export default function Navbar() {
@@ -102,7 +102,8 @@ export default function Navbar() {
                   >
                     {link.index}
                   </span>
-                  {link.label}
+                  <span className="lg:hidden">{link.short}</span>
+                  <span className="hidden lg:inline">{link.label}</span>
                   <span
                     className={cn(
                       "absolute -bottom-1 left-0 h-px w-full origin-left bg-amber transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
@@ -116,7 +117,7 @@ export default function Navbar() {
             })}
           </nav>
         </div>
-        <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
+        <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex">
           <ThemeToggle
             className={
               onHero
@@ -154,7 +155,7 @@ export default function Navbar() {
             Get a Quote
           </Link>
         </div>
-        <div className="ml-auto flex items-center gap-1 md:hidden">
+        <div className="ml-auto flex items-center gap-1 lg:hidden">
           <button
             type="button"
             onClick={openBrief}

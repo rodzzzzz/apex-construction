@@ -2,7 +2,7 @@ import Image from "next/image";
 import ProjectInquiryForm from "@/components/project-inquiry-form";
 import { FormPanel } from "@/components/form-panel";
 import { HeroAtmosphere } from "@/components/hero-atmosphere";
-import { Ornament, SectionKicker } from "@/components/ornament";
+import { SectionKicker } from "@/components/ornament";
 import { Reveal } from "@/components/reveal";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { StatsBand } from "@/components/stats-band";
@@ -129,7 +129,7 @@ export default async function CustomHomesPage() {
           sizes="100vw"
         />
         <HeroAtmosphere />
-        <div className="relative mx-auto flex min-h-svh max-w-7xl flex-col justify-end px-5 pb-16 pt-32 md:px-8 md:pb-24">
+        <div className="relative mx-auto flex min-h-svh max-w-7xl flex-col justify-end px-7 pb-16 pt-32 sm:px-10 md:px-14 md:pb-24">
           <div className="animate-hero flex w-fit max-w-full flex-col">
             <p className="font-mono text-[10px] tracking-[0.36em] text-amber uppercase sm:text-[11px] sm:tracking-[0.42em]">
               <span className="tabular-nums text-amber/55">
@@ -138,18 +138,21 @@ export default async function CustomHomesPage() {
               </span>
               Custom homes
             </p>
-            <Ornament light className="mt-5 sm:mt-7" />
           </div>
           <h1 className="line-rise-mask mt-6 max-w-3xl">
-            <span className="animate-hero-rise animate-hero-delay-1 block text-balance font-serif text-5xl font-bold leading-[1.05] text-chalk md:text-7xl lg:text-[5.25rem]">
+            <span className="animate-hero-rise animate-hero-delay-1 block text-balance font-serif text-[clamp(2.5rem,9vw,5.25rem)] font-bold leading-[1.02] text-chalk">
               {homes.title}
             </span>
           </h1>
-          <p className="animate-hero animate-hero-delay-3 mt-5 max-w-xl text-lg leading-relaxed text-chalk/80 sm:mt-8 sm:text-xl">
+          <div
+            aria-hidden
+            className="animate-hero-draw animate-hero-delay-2 mt-7 h-1 w-16 bg-amber sm:w-24"
+          />
+          <p className="animate-hero animate-hero-delay-2 mt-6 max-w-xl text-base leading-relaxed text-chalk/80 sm:text-lg md:text-xl">
             {homes.intro}
           </p>
-          <div className="animate-hero animate-hero-delay-4 mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <p className="max-w-md font-mono text-[11px] tracking-[0.16em] text-chalk/70 uppercase">
+          <div className="animate-hero animate-hero-delay-3 mt-9 flex flex-col gap-5 border-t border-chalk/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-chalk/70 uppercase">
               {homes.capacity}
             </p>
             <a

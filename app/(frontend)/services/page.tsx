@@ -50,7 +50,7 @@ export default async function ServicesPage() {
         label="Services"
         title="Every scope, priced straight"
         description="A transparent catalog of services with honest starting prices — add what you need to a brief and request a firm quote."
-        image={PLACEHOLDER_IMAGES.site}
+        image={PLACEHOLDER_IMAGES.service}
         imageAlt="An active construction site managed by Apex"
       />
       <div className="mx-auto max-w-7xl space-y-20 px-5 py-16 sm:py-20 md:px-8 md:py-28">

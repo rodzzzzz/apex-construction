@@ -98,11 +98,15 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="absolute inset-0 bg-linear-to-t from-graphite via-graphite/55 to-graphite/25" />
         <div
           aria-hidden
+          className="absolute inset-0 bg-linear-to-r from-graphite/75 via-graphite/30 to-transparent md:from-graphite/80 md:via-graphite/20"
+        />
+        <div
+          aria-hidden
           className="blueprint-grid absolute inset-0 opacity-50"
         />
-        <div className="pointer-events-none absolute inset-3 top-16 border border-amber/30 sm:inset-5 sm:top-16 md:inset-8 md:top-20" />
+        <div className="pointer-events-none absolute inset-2 top-16 border border-amber/30 sm:inset-5 sm:top-16 md:inset-8 md:top-20" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pb-24">
+        <div className="relative mx-auto w-full max-w-7xl px-7 pb-16 pt-32 sm:px-10 md:px-14 md:pb-24">
           <Link
             href="/services"
             className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-chalk/70 uppercase transition-colors duration-300 hover:text-chalk"

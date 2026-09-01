@@ -2,6 +2,7 @@ import Image from "next/image";
 import PageHero from "@/components/page-hero";
 import { QuoteInvite } from "@/components/quote-invite";
 import { StatsBand } from "@/components/stats-band";
+import { ImageCorners } from "@/components/image-corners";
 import { Reveal } from "@/components/reveal";
 import { SectionKicker } from "@/components/ornament";
 import { JsonLd } from "@/components/json-ld";
@@ -92,7 +93,7 @@ export default async function AboutPage() {
         label="About"
         title="Builders, not brokers"
         description="A general contractor that runs its own sites, employs its own crews, and answers its own phone."
-        image={PLACEHOLDER_IMAGES.site}
+        image={PLACEHOLDER_IMAGES.about}
         imageAlt="Apex Construction crew on an active site"
       />
 
@@ -118,15 +119,15 @@ export default async function AboutPage() {
           </Reveal>
 
           <Reveal delay={120} className="relative min-w-0">
-            <div className="relative mx-auto aspect-4/5 w-full max-h-[min(32rem,80vh)] overflow-hidden lg:max-h-none">
+            <div className="group relative mx-auto aspect-4/5 w-full max-h-[min(32rem,80vh)] overflow-hidden lg:max-h-none">
               <Image
                 src={PLACEHOLDER_IMAGES.project}
                 alt="A finished Apex Construction project"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="pointer-events-none absolute inset-3 border border-chalk/35 sm:inset-4" />
+              <ImageCorners />
             </div>
             <p className="mt-4 text-center font-mono text-[11px] tracking-[0.22em] text-muted-foreground uppercase">
               The Cullen Drive yard, 2024
